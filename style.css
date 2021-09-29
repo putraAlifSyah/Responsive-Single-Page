@@ -1,0 +1,258 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    font-family: 'oswald';
+    margin: 50px;
+    background: #ddd;
+}
+
+.container{
+    display: grid;
+    gap: 5px;
+}
+
+/* header */
+header{
+    display: grid;
+    grid-template-areas: 
+        'hero hero fitur1'
+        'hero hero fitur2';
+}
+
+img{
+    width: 100%;
+}
+
+.hero{
+    grid-area: hero;
+    min-height: 300px;
+    background-image: url('img/thumb-1920-1102284.jpg');
+    background-size: cover;
+    background-position: center;
+    padding:50px;
+}
+
+.fitur-1{
+    grid-area: fitur1;
+    background-image: url('img/rsz_7ebfdc9a5879791c0d0fd6a1729c09c3.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.fitur-2{
+    grid-area: fitur2;
+    background-image: url('img/rsz_90f59ed88b5f34c844e06f4f20dca989.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero > *{
+    display: none;
+}
+
+.features{
+    background-color: black;
+    color: white;
+    display: grid;
+    place-content: center;
+}
+
+.features .price{
+    font-size: 30pt;
+    font-weight: 200;
+}
+
+
+/* navigasi */
+.menu{
+    order: -1;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+}
+
+.menu ul{
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 5px;
+}
+
+.brand{
+    font-size: 1.3em;
+}
+
+.menu a{
+    padding: 3px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    background-color: black;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* humberger menu */
+.menu-toggle{
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 2;
+}
+
+nav.menu .menu-toggle span{
+    position: block;
+    background-color: black;
+    width: 28px;
+    margin-top: 2px;
+    height: 3px;
+    transition: all 0.5s;
+}
+
+input{
+    position: absolute;
+    width: 40px;
+    height: 28px;
+    right:44px;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.menu-toggle span:nth-child(2){
+    transform-origin: 0 0;
+}
+
+.menu-toggle input:checked ~ span:nth-child(2){
+    transform: rotate(45deg) translate(-1px, -1px);
+}
+.menu-toggle span:nth-child(4){
+    transform-origin: 0 100%;
+}
+
+.menu-toggle input:checked ~ span:nth-child(4){
+    transform: rotate(-45deg) translate(-3px, 2px);
+}
+
+.menu-toggle input:checked ~ span:nth-child(3){
+    transform: scale(0);
+}
+
+/* services */
+.services{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.icon{
+    font-size: 3em;
+}
+
+.service{
+    background: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    border: solid 1px #aaa;
+}
+
+
+/* gallery */
+.gallery{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    padding-top: 10px;
+}
+.gallery h3{
+    grid-column-start: 1;
+    grid-column-end: -1;
+    font-size:2em;
+    text-align: center;   
+}
+
+@media (max-width:1024px){
+    .menu{
+        order: inherit;
+        grid-template-columns: 1fr;
+        margin-top: 5px;
+    }
+    .brand{
+        display: none;
+    }
+    .hero>*{
+        display: block;
+        background-color: black;
+        padding: 5px;
+        border-radius: 3px;
+        color: white;
+        text-align: center;
+    }
+    .hero{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+@media (max-width:768px){
+    .menu{
+        order: -1;
+        justify-items: end;
+    }
+    .menu-toggle{
+        display: flex;
+    }
+    .menu ul{
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 0px;
+        right: 0;
+        height: 100vh;
+        width: 100%;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: black;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: 1s;
+    }
+
+    .menu ul.slide{
+        transform: translateY(0);
+        opacity: 1;
+    }
+    .menu .menu-toggle .turun{
+        background-color: white;
+    }
+    header{
+        margin-top: 10px;
+    }
+    .menu .menu-list li a{
+        background-color: black;
+        color: white;
+        z-index: 3;
+        opacity: 1;
+    }
+}
+
+@media (max-width:600px){
+    .services{
+        grid-template-columns: 1fr;
+    }   
+    header{
+        grid-template-areas: 
+            'hero'
+            'fitur1'
+            'fitur2';
+    }
+    body{
+        margin: 0;
+    }
+}
